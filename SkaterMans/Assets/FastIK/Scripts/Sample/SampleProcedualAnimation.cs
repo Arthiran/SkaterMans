@@ -25,11 +25,11 @@ namespace DitzelGames.FastIK
             for(int i = 0; i < FootTarget.Length; i++)
             {
                 Transform foot = FootTarget[i];
-                var ray = new Ray(foot.transform.position + Vector3.up * 1.03f, Vector3.down);
+                var ray = new Ray(foot.transform.position + Vector3.up * 1.04f, Vector3.down);
                 var hitInfo = new RaycastHit();
-                if (Physics.SphereCast(ray, 0.13f, out hitInfo, 1.03f))
+                if (Physics.SphereCast(ray, 0.14f, out hitInfo, 1.04f))
                 {
-                    foot.position = hitInfo.point + Vector3.up * 0.13f;
+                    foot.position = hitInfo.point + Vector3.up * 0.14f;
                     foot.localRotation = Quaternion.FromToRotation(transform.up, hitInfo.normal);
                 }
             }
