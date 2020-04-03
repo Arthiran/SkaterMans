@@ -8,6 +8,7 @@ namespace DitzelGames.FastIK
         public Transform LookTarget;
         public Transform HandTarget;
         public Transform HandPole;
+        private float distance = 0.1f;
         /*public Transform Step;
         public Transform Attraction;*/
 
@@ -25,11 +26,11 @@ namespace DitzelGames.FastIK
             for(int i = 0; i < FootTarget.Length; i++)
             {
                 Transform foot = FootTarget[i];
-                var ray = new Ray(foot.transform.position + Vector3.up * 1.04f, Vector3.down);
-                var hitInfo = new RaycastHit();
-                if (Physics.SphereCast(ray, 0.14f, out hitInfo, 1.04f))
+                Ray ray = new Ray(foot.transform.position + Vector3.up * distance * 10, Vector3.down);
+                RaycastHit hitInfo = new RaycastHit();
+                if (Physics.SphereCast(ray, distance, out hitInfo, distance * 10))
                 {
-                    foot.position = hitInfo.point + Vector3.up * 0.14f;
+                    foot.position = hitInfo.point + Vector3.up * distance;
                     foot.localRotation = Quaternion.FromToRotation(transform.up, hitInfo.normal);
                 }
             }
